@@ -8,10 +8,11 @@ from utils.pdf_converter import convert_image_to_pdf, convert_images_to_pdf, con
 
 router = Router()
 
+ALBUM_COLLECTION_DELAY_SECONDS = 2.0
 ALBUM_DATA = {}
 
 async def process_album(media_group_id: str, chat_id: int, bot: Bot, state: FSMContext, status_msg: Message):
-    await asyncio.sleep(2.0)  # Wait for other images in the album to arrive
+    await asyncio.sleep(ALBUM_COLLECTION_DELAY_SECONDS)  # Wait for other images in the album to arrive
     
     data = ALBUM_DATA.pop(media_group_id, None)
     if not data:
@@ -41,7 +42,7 @@ async def process_album(media_group_id: str, chat_id: int, bot: Bot, state: FSMC
         await bot.send_document(chat_id, pdf_file, caption="Ini adalah file PDF dari grup gambar Anda!")
         try:
             await status_msg.delete()
-        except:
+        except Exception:
             pass
     except Exception as e:
         await bot.send_message(chat_id, f"Terjadi kesalahan saat konversi album: {e}")
