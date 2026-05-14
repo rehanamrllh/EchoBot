@@ -1,61 +1,61 @@
 # EchoBot
 
-EchoBot adalah bot Telegram berbasis `aiogram` yang memakai Gemini untuk percakapan AI, menyimpan riwayat chat ke SQLite, dan menyediakan fitur konversi file ke PDF.
+EchoBot is a Telegram bot built with `aiogram` that uses Gemini for AI conversations, stores chat history in SQLite, and provides file-to-PDF conversion features.
 
-## Fitur
+## Features
 
-- Chat AI dengan konteks percakapan sebelumnya.
-- Simpan dan hapus riwayat percakapan per chat.
-- Ringkas percakapan lewat tombol inline.
-- Konversi gambar JPG/PNG ke PDF.
-- Konversi file teks `.txt` ke PDF.
-- Dukungan album gambar agar beberapa foto bisa digabung menjadi satu PDF.
+- AI chat with previous conversation context.
+- Save and clear conversation history per chat.
+- Summarize conversations through inline buttons.
+- Convert JPG/PNG images to PDF.
+- Convert `.txt` text files to PDF.
+- Support image albums so multiple photos can be merged into a single PDF.
 
-## Perintah Bot
+## Bot Commands
 
-- `/start` - Memulai percakapan dan menampilkan tombol utama.
-- `/help` - Menampilkan bantuan.
-- `/clear` - Menghapus memori percakapan.
-- `/convertpdf` - Masuk ke mode konversi PDF.
-- `/cancel` - Membatalkan mode aktif.
+- `/start` - Start a conversation and show the main buttons.
+- `/help` - Show help information.
+- `/clear` - Clear conversation memory.
+- `/convertpdf` - Enter PDF conversion mode.
+- `/cancel` - Cancel the active mode.
 
-## Kebutuhan
+## Requirements
 
-- Python 3.10 atau lebih baru.
-- Token bot Telegram dari [BotFather](https://t.me/BotFather).
-- API key Gemini dari Google AI Studio.
+- Python 3.10 or newer.
+- A Telegram bot token from [BotFather](https://t.me/BotFather).
+- A Gemini API key from Google AI Studio.
 
-## Instalasi
+## Installation
 
-1. Buat virtual environment dan aktifkan:
+1. Create and activate a virtual environment:
 
 ```powershell
 python -m venv venv
 venv\Scripts\Activate.ps1
 ```
 
-2. Install dependency:
+2. Install the dependencies:
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-3. Buat file `.env` di root project lalu isi:
+3. Create a `.env` file in the project root and fill it with:
 
 ```env
 TELEGRAM_BOT_TOKEN=isi_token_telegram_anda
 GEMINI_API_KEY=isi_api_key_gemini_anda
 ```
 
-## Menjalankan Bot
+## Running the Bot
 
 ```powershell
 python bot.py
 ```
 
-Setelah bot berjalan, buka Telegram dan kirim `/start` ke bot Anda.
+After the bot is running, open Telegram and send `/start` to your bot.
 
-## Struktur Project
+## Project Structure
 
 ```text
 .
@@ -74,8 +74,8 @@ Setelah bot berjalan, buka Telegram dan kirim `/start` ke bot Anda.
     └── pdf_converter.py
 ```
 
-## Catatan
+## Notes
 
-- Database SQLite dibuat otomatis sebagai `chat_memory.db` saat bot pertama kali dijalankan.
-- File PDF dan file sementara dibuat saat proses konversi lalu dibersihkan setelah selesai.
-- Model Gemini yang dipakai saat ini adalah `gemini-2.5-flash`.
+- The SQLite database is created automatically as `chat_memory.db` when the bot is run for the first time.
+- PDF files and temporary files are created during the conversion process and cleaned up afterward.
+- The Gemini model currently used is `gemini-2.5-flash`.
