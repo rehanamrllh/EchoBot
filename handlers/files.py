@@ -125,8 +125,10 @@ async def handle_document_to_pdf(message: Message, state: FSMContext, bot: Bot):
         except Exception as e:
             await message.answer(f"Terjadi kesalahan saat konversi: {e}")
         finally:
-            if os.path.exists(file_path): os.remove(file_path)
-            if os.path.exists(output_pdf_path): os.remove(output_pdf_path)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            if os.path.exists(output_pdf_path):
+                os.remove(output_pdf_path)
             
         await state.clear()
         
@@ -144,8 +146,10 @@ async def handle_document_to_pdf(message: Message, state: FSMContext, bot: Bot):
         except Exception as e:
             await message.answer(f"Terjadi kesalahan saat konversi teks: {e}")
         finally:
-            if os.path.exists(file_path): os.remove(file_path)
-            if os.path.exists(output_pdf_path): os.remove(output_pdf_path)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            if os.path.exists(output_pdf_path):
+                os.remove(output_pdf_path)
             
         await state.clear()
     else:

@@ -1,7 +1,10 @@
+import logging
+
 from google import genai
 from google.genai import types
 from config import GEMINI_API_KEY
 
+logger = logging.getLogger(__name__)
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 async def get_ai_response(history: list, new_message: str) -> str:
@@ -44,5 +47,5 @@ async def get_ai_response(history: list, new_message: str) -> str:
         )
         return response.text
     except Exception as e:
-        print(f"Error AI: {e}")
+        logger.exception("Error AI: %s", e)
         return "Maaf, terjadi kesalahan saat memproses permintaanmu. Coba lagi nanti."

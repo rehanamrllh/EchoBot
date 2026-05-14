@@ -1,8 +1,11 @@
+import logging
+
 from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery
 from database import add_message, get_history
 from ai_service import get_ai_response
 
+logger = logging.getLogger(__name__)
 router = Router()
 
 @router.message(F.text)
@@ -29,7 +32,7 @@ async def handle_text_messages(message: Message):
         await message.answer(ai_reply)
         
     except Exception as e:
-        print(f"Error handling message: {e}")
+        logger.exception("Error handling message: %s", e)
         await message.answer("Maaf, sistem mengalami gangguan saat memproses pesan Anda.")
 
 @router.callback_query(lambda c: c.data == "summarize_chat")
