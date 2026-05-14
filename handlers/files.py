@@ -46,7 +46,7 @@ async def process_album(media_group_id: str, chat_id: int, bot: Bot, state: FSMC
         try:
             await status_msg.delete()
         except Exception:
-            pass
+            logger.debug("Tidak dapat menghapus pesan status album untuk chat %s", chat_id, exc_info=True)
     except Exception:
         logger.exception("Terjadi kesalahan saat konversi album untuk chat %s", chat_id)
         await bot.send_message(chat_id, "Terjadi kesalahan saat konversi album. Silakan coba lagi.")
