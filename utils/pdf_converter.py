@@ -9,7 +9,7 @@ async def convert_image_to_pdf(image_path: str, output_path: str) -> str:
         image = Image.open(image_path)
         # Convert to RGB to prevent errors with RGBA images (like PNGs with transparency)
         rgb_im = image.convert('RGB')
-        rgb_im.save(output_path)
+        rgb_im.save(output_path, "PDF")
         return output_path
         
     return await asyncio.to_thread(_convert)
@@ -27,7 +27,7 @@ async def convert_images_to_pdf(image_paths: list[str], output_path: str) -> str
             
         # The first image is used to save the PDF, appending the rest
         if images:
-            images[0].save(output_path, save_all=True, append_images=images[1:])
+            images[0].save(output_path, "PDF", save_all=True, append_images=images[1:])
         return output_path
         
     return await asyncio.to_thread(_convert)
